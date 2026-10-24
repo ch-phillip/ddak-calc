@@ -1,0 +1,11 @@
+export const roundWon = (n: number) => Math.round((n + Number.EPSILON) * 100) / 100;
+export const percentOf = (base: number, rate: number) => roundWon(base * rate / 100);
+export const percentChange = (before: number, after: number) => before === 0 ? null : roundWon((after - before) / Math.abs(before) * 100);
+export const discount = (price: number, rate: number) => ({ savings: roundWon(price * rate / 100), final: roundWon(price * (1 - rate / 100)) });
+export const daysBetween = (a: Date, b: Date) => Math.round((Date.UTC(b.getFullYear(), b.getMonth(), b.getDate()) - Date.UTC(a.getFullYear(), a.getMonth(), a.getDate())) / 86400000);
+export const addDays = (date: Date, days: number) => { const d = new Date(date); d.setDate(d.getDate() + days); return d; };
+export const hourlyPay = (rate: number, hours: number) => roundWon(rate * hours);
+export const vatFromSupply = (supply: number, rate = 10) => ({ vat: roundWon(supply * rate / 100), total: roundWon(supply * (1 + rate / 100)) });
+export const vatFromTotal = (total: number, rate = 10) => { const supply = roundWon(total / (1 + rate / 100)); return { supply, vat: roundWon(total - supply), total: roundWon(total) }; };
+export const sqmToPyeong = (sqm: number) => roundWon(sqm / 3.305785);
+export const pyeongToSqm = (pyeong: number) => roundWon(pyeong * 3.305785);

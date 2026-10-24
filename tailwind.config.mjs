@@ -1,0 +1,1 @@
+export default { content: ['./src/**/*.{astro,html,js,jsx,ts,tsx}'], theme: { extend: { colors: { ink: '#18231f', muted: '#718078', forest: '#176b50', mint: '#e5f4ec', paper: '#f8faf7' }, boxShadow: { soft: '0 18px 60px rgba(27,57,42,.08)' } } }, plugins: [] };
