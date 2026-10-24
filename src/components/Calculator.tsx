@@ -6,7 +6,7 @@ const money = (n:number) => `${new Intl.NumberFormat('ko-KR',{maximumFractionDig
 const number = (n:number) => new Intl.NumberFormat('ko-KR',{maximumFractionDigits:2}).format(n);
 const today = () => new Date().toISOString().slice(0,10);
 export default function Calculator({kind}:{kind:Kind}) {
- const [v,setV]=useState<Record<string,string>>({a:'10000',b:'10',c:'',d:'',date:today(),date2:today(),mode:'supply'}); const [copied,setCopied]=useState(false);
+ const [v,setV]=useState<Record<string,string>>({a:kind==='area'?'84':'10000',b:kind==='date'?'0':'10',c:'',d:'',date:today(),date2:today(),mode:'supply'}); const [copied,setCopied]=useState(false);
  const set=(key:string,value:string)=>setV(p=>({...p,[key]:value}));
  const n=(key:string)=>Number(v[key]||0);
  const results=useMemo(()=>{
@@ -20,7 +20,7 @@ export default function Calculator({kind}:{kind:Kind}) {
  const fields:Record<Kind,Array<{key:string;label:string;type?:string;placeholder?:string}>>={
  percent:[{key:'a',label:'기준값'},{key:'b',label:'비율 (%)'},{key:'c',label:'비교할 값'}],discount:[{key:'a',label:'할인 전 가격 (원)'},{key:'b',label:'할인율 (%)'}],date:[{key:'date',label:'시작 날짜',type:'date'},{key:'date2',label:'종료 날짜',type:'date'},{key:'b',label:'더하거나 뺄 일수'}],hourly:[{key:'a',label:'시급 (원)'},{key:'b',label:'근무 시간'}],vat:[{key:'a',label:'금액 (원)'},{key:'b',label:'부가세율 (%)'}],area:[{key:'a',label:'면적'}]};
  const copy=async()=>{await navigator.clipboard.writeText(results.map(r=>`${r.label}: ${r.value}`).join('\n'));setCopied(true);setTimeout(()=>setCopied(false),1600)};
- const reset=()=>setV({a:'10000',b:kind==='date'?'0':'10',c:'',d:'',date:today(),date2:today(),mode:kind==='vat'?'supply':kind==='area'?'sqm':''});
+ const reset=()=>setV({a:kind==='area'?'84':'10000',b:kind==='date'?'0':'10',c:'',d:'',date:today(),date2:today(),mode:kind==='vat'?'supply':kind==='area'?'sqm':''});
  return <div className="grid gap-5 lg:grid-cols-[1.05fr_.95fr]">
   <section className="rounded-3xl border border-black/5 bg-white p-6 shadow-soft sm:p-8"><div className="mb-7 flex items-center justify-between"><h2 className="text-lg font-bold">값을 입력해 주세요</h2><button onClick={reset} className="text-sm font-semibold text-muted hover:text-ink">초기화 ↺</button></div>
    {(kind==='vat'||kind==='area')&&<div className="mb-6 flex rounded-xl bg-paper p-1">{(kind==='vat'?[['supply','별도 금액'],['total','포함 금액']]:[['sqm','㎡ → 평'],['pyeong','평 → ㎡']]).map(([key,label])=><button key={key} onClick={()=>set('mode',key)} className={`flex-1 rounded-lg px-3 py-2.5 text-sm font-bold transition ${v.mode===key?'bg-white text-forest shadow-sm':'text-muted'}`}>{label}</button>)}</div>}
