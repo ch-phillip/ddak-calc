@@ -7,6 +7,7 @@ export const onRequest = async ({ request, next }: PagesContext): Promise<Respon
   const url = new URL(request.url);
 
   if (url.hostname === 'www.justclickfor.me') {
+    url.protocol = 'https:';
     url.hostname = 'justclickfor.me';
     return Response.redirect(url.toString(), 301);
   }
