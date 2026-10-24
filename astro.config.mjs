@@ -1,4 +1,5 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
-export default defineConfig({ site: 'https://justclickfor.me', integrations: [react()], vite: { plugins: [tailwindcss()] }, output: 'static' });
+import sitemap from '@astrojs/sitemap';
+export default defineConfig({ site: 'https://justclickfor.me', integrations: [react(), sitemap()], vite: { plugins: [tailwindcss()] }, output: 'static' });
