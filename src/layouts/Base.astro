@@ -5,5 +5,13 @@ const url = `https://ddak-calc.pages.dev${path}`;
 <!doctype html><html lang="ko"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="theme-color" content="#f8faf7"/><title>{title}</title><meta name="description" content={description}/><link rel="canonical" href={url}/><meta property="og:type" content={type}/><meta property="og:locale" content="ko_KR"/><meta property="og:site_name" content="딱계산"/><meta property="og:title" content={title}/><meta property="og:description" content={description}/><meta property="og:url" content={url}/><link rel="icon" type="image/svg+xml" href="/favicon.svg"/><slot name="head"/><style is:global>
 @import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap');
+@theme {
+  --color-ink: #18231f;
+  --color-muted: #718078;
+  --color-forest: #176b50;
+  --color-mint: #e5f4ec;
+  --color-paper: #f8faf7;
+  --shadow-soft: 0 18px 60px rgba(27,57,42,.08);
+}
 :root{font-family:'DM Sans','Noto Sans KR',sans-serif;color:#18231f;background:#f8faf7;font-synthesis:none;text-rendering:optimizeLegibility}*{box-sizing:border-box}body{margin:0}.calc-input{width:100%;height:54px;border:1px solid #e6ebe7;border-radius:14px;background:#fbfcfb;padding:0 48px 0 16px;color:#18231f;font-size:16px;font-weight:600;outline:none;transition:.2s}.calc-input:focus{border-color:#68a48a;box-shadow:0 0 0 4px rgba(23,107,80,.09)}.calc-input::placeholder{color:#a5afa9;font-weight:400}input[type=date]{padding-right:14px}
 </style></head><body><slot/></body></html>
