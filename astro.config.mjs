@@ -1,4 +1,4 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
-import tailwind from '@astrojs/tailwind';
-export default defineConfig({ site: 'https://ddak-calc.pages.dev', integrations: [react(), tailwind()], output: 'static' });
+import tailwindcss from '@tailwindcss/vite';
+export default defineConfig({ site: 'https://ddak-calc.pages.dev', integrations: [react()], vite: { plugins: [tailwindcss()] }, output: 'static' });
